@@ -14,7 +14,7 @@
             "SAF\\Helpers\\" : "src/",
             "SAF\\Helpers\\Abstracts\\" : "src/abstrats/",
             "SAF\\Helpers\\Features\\" : "src/features/",
-            "SAF\\Helpers\\exceptions\\" : "src/exceptions/",
+            "SAF\\Helpers\\exceptions\\" : "src/exceptions/"
     	}
     },
     "require": {
