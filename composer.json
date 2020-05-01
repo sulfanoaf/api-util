@@ -1,0 +1,29 @@
+{
+    "name": "sulfanoaf/laravel-helper",
+    "description": "Laravel Helper Library",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Sulfano Agus Fiki",
+            "email": "sulvanoagus.master@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": {
+            "SAF\\Helpers\\" : "src/",
+            "SAF\\Helpers\\Abstracts\\" : "src/abstrats/",
+            "SAF\\Helpers\\Features\\" : "src/features/",
+            "SAF\\Helpers\\exceptions\\" : "src/exceptions/",
+    	}
+    },
+    "require": {
+    	"monolog/monolog": "1.23.0"
+    },
+    "require-dev": {
+    	"phpunit/phpunit": "~4.0"
+    },
+    "minimum-stability": "dev",
+    "version": "1.0.0"
+}
+
