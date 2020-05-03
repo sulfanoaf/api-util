@@ -3,10 +3,10 @@
 namespace SAF\Helpers\Abstracts;
 
 use SAF\Helpers\Exceptions\ValException;
-use SAF\Helpers\Interfaces\NotTransactional as InterfacesNotTransactional;
+use SAF\Helpers\Interfaces\NonTransactional as InterfacesNonTransactional;
 use Validator;
 
-abstract class NotTransactional implements InterfacesNotTransactional
+abstract class NonTransactional implements InterfacesNonTransactional
 {
   abstract protected function process($dto);
 

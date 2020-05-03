@@ -6,7 +6,7 @@ namespace SAF\Helpers\Interfaces;
  * @author Sulfano Agus Fikri
  */
 
-interface NotTransactional
+interface NonTransactional
 {
 
   public function getDescription();
