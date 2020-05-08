@@ -4,42 +4,54 @@ namespace SAF\Helpers\Features;
 
 class TailLog
 {
-  public static function error($class, $method, $message = [], $line = null)
+  public static function debug(...$args)
   {
-    if (is_object($class)) {
-      $name = get_class($class);
-    } else if (is_string($class)) {
-      $name = $class;
-    } else {
-      $name = "PROVIDE A NAME PLEASE";
+    $log = "START TAIL LOG ==========================================================>";
+    foreach ($args as $key => $value) {
+      if (is_object($value)) {
+        $string = get_class($value);
+      } else if (is_string($value)) {
+        $string = $value;
+      } else {
+        $string = json_encode($value);
+      }
+      $log .= "\n\t $key => $string";
     }
-    $msg = is_string($message) ? $message : json_encode($message);
-    \Log::error("Namespace => [" . $name . "] \n\t Function => " . $method . " \n\t Title/Line => " . $line . "\n\t Message/DTO/Request => " . $msg);
+    $log .= "\n[*******************] local.DEBUG: END TAIL LOG ============================================================>";
+    \Log::debug($log);
   }
 
-  public static function debug($class, $method, $message = [], $line = null)
+  public static function info(...$args)
   {
-    if (is_object($class)) {
-      $name = get_class($class);
-    } else if (is_string($class)) {
-      $name = $class;
-    } else {
-      $name = "PROVIDE A NAME PLEASE";
+    $log = "START TAIL LOG ==========================================================>";
+    foreach ($args as $key => $value) {
+      if (is_object($value)) {
+        $string = get_class($value);
+      } else if (is_string($value)) {
+        $string = $value;
+      } else {
+        $string = json_encode($value);
+      }
+      $log .= "\n\t $key => $string";
     }
-    $msg = is_string($message) ? $message : json_encode($message);
-    \Log::debug("Namespace => [" . $name . "] \n\t Function => " . $method . " \n\t Title/Line => " . $line . "\n\t Message/DTO/Request => " . $msg);
+    $log .= "\n[*******************] local.INFO: END TAIL LOG ============================================================>";
+    \Log::info($log);
   }
 
-  public static function info($class, $method, $message = [], $line = null)
+  public static function error(...$args)
   {
-    if (is_object($class)) {
-      $name = get_class($class);
-    } else if (is_string($class)) {
-      $name = $class;
-    } else {
-      $name = "PROVIDE A NAME PLEASE";
+    $log = "START TAIL LOG ==========================================================>";
+    foreach ($args as $key => $value) {
+      if (is_object($value)) {
+        $string = get_class($value);
+      } else if (is_string($value)) {
+        $string = $value;
+      } else {
+        $string = json_encode($value);
+      }
+      $log .= "\n\t $key => $string";
     }
-    $msg = is_string($message) ? $message : json_encode($message);
-    \Log::info("Namespace => [" . $name . "] \n\t Function => " . $method . " \n\t Title/Line => " . $line . "\n\t Message/DTO/Request => " . $msg);
+    $log .= "\n[*******************] local.ERROR: END TAIL LOG ============================================================> \n\n";
+    \Log::error($log);
   }
 }

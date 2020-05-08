@@ -4,5 +4,6 @@ namespace SAF\Helpers\Interfaces;
 
 interface NativeQuery
 {
-  public function toString();
+  public function get();
+  public function first();
 }
