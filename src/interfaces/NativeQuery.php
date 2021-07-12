@@ -1,6 +1,5 @@
 <?php
-
-namespace SAF\Helpers\Interfaces;
+namespace DAI\Utils\Interfaces;
 
 interface NativeQuery
 {

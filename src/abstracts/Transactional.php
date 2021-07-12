@@ -1,9 +1,8 @@
 <?php
 
-namespace SAF\Helpers\Abstracts;
+namespace DAI\Utils\Abstracts;
 
-use SAF\Helpers\Interfaces\Transactional as InterfacesTransactional;
-use SAF\Helpers\Exceptions\ValException;
+use DAI\Utils\Interfaces\Transactional as InterfacesTransactional;
 use Exception;
 use Validator;
 use DB;
@@ -11,25 +10,21 @@ use Log;
 
 abstract class Transactional implements InterfacesTransactional
 {
-  abstract protected function prepare($dto, $originalDto);
-  abstract protected function process($dto, $originalDto);
+  abstract protected function prepare($parameters, $original_parameters);
+  abstract protected function process($parameters, $original_parameters);
 
-  public function execute($dto)
+  public function execute($parameters)
   {
-    $originalDto = $dto;
+    $original_parameters = $parameters;
     $result = [];
     try {
       DB::beginTransaction();
 
-      $validator = Validator::make($dto, $this->rules());
+      Validator::make($parameters, $this->rules())->validate();
 
-      if ($validator->fails()) {
-        throw new ValException('validator', $validator->errors());
-      }
-
-      $modified_dto = $this->prepare($dto, $originalDto);
-      if ($modified_dto != null) $dto = $modified_dto;
-      $result =  $this->process($dto, $originalDto);
+      $motified_parameters = $this->prepare($parameters, $original_parameters);
+      if ($motified_parameters != null) $parameters = $motified_parameters;
+      $result =  $this->process($parameters, $original_parameters);
 
       DB::commit();
     } catch (Exception $ex) {
@@ -43,10 +38,5 @@ abstract class Transactional implements InterfacesTransactional
   protected function rules()
   {
     return [];
-  }
-
-  protected function throwValidation($key, ...$msg)
-  {
-    throw new ValException($key, $msg);
   }
 }

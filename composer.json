@@ -1,20 +1,19 @@
 {
-    "name": "sulfanoaf/laravel-helper",
-    "description": "Laravel Helper Library",
+    "name": "sulfanoaf/api-util",
+    "description": "Lumen/Laravel API Helper Library",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Sulfano Agus Fiki",
+            "name": "Sulfano Agus Fikri",
             "email": "sulvanoagus.master@gmail.com"
         }
     ],
     "autoload": {
     	"psr-4": {
-            "SAF\\Helpers\\" : "src/",
-            "SAF\\Helpers\\Abstracts\\" : "src/abstrats/",
-            "SAF\\Helpers\\Features\\" : "src/features/",
-            "SAF\\Helpers\\exceptions\\" : "src/exceptions/"
+            "DAI\\Utils\\" : "src/",
+            "DAI\\Utils\\Abstracts\\" : "src/abstrats/",
+            "DAI\\Utils\\Helpers\\" : "src/helpers/"
     	}
     },
     "require": {

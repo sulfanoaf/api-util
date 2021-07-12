@@ -1,6 +1,5 @@
 <?php
-
-namespace SAF\Helpers\Features;
+namespace DAI\Utils\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 

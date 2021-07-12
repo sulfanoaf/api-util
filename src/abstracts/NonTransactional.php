@@ -1,34 +1,24 @@
 <?php
 
-namespace SAF\Helpers\Abstracts;
+namespace DAI\Utils\Abstracts;
 
-use SAF\Helpers\Exceptions\ValException;
-use SAF\Helpers\Interfaces\NonTransactional as InterfacesNonTransactional;
+use DAI\Utils\Interfaces\NonTransactional as InterfacesNonTransactional;
 use Validator;
 
 abstract class NonTransactional implements InterfacesNonTransactional
 {
-  abstract protected function process($dto);
+  abstract protected function process($parameters);
 
-  public function execute($dto)
+  public function execute($parameters)
   {
 
-    $validator = Validator::make($dto, $this->rules());
+    Validator::make($parameters, $this->rules())->validate();
 
-    if ($validator->fails()) {
-      throw new ValException('validator', $validator->errors());
-    }
-
-    return $this->process($dto);
+    return $this->process($parameters);
   }
 
   protected function rules()
   {
     return [];
-  }
-
-  protected function throwValidation($key, ...$msg)
-  {
-    throw new ValException($key, $msg);
   }
 }
