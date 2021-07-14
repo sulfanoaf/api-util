@@ -1,7 +1,7 @@
 <?php
 namespace DAI\Utils\Helpers;
 
-use SAF\Helpers\Interfaces\NativeQuery as InterfacesNativeQuery;
+use DAI\Utils\Interfaces\NativeQuery as InterfacesNativeQuery;
 use DB;
 use Exception;
 
