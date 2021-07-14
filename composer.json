@@ -13,7 +13,9 @@
     	"psr-4": {
             "DAI\\Utils\\" : "src/",
             "DAI\\Utils\\Abstracts\\" : "src/abstrats/",
-            "DAI\\Utils\\Helpers\\" : "src/helpers/"
+            "DAI\\Utils\\Helpers\\" : "src/helpers/",
+            "DAI\\Utils\\Traits\\" : "src/traits/",
+            "DAI\\Utils\\Exceptions\\" : "src/exceptions/"
     	}
     },
     "require": {
