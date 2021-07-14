@@ -5,7 +5,7 @@ namespace DAI\Utils\Interfaces;
  * @author Sulfano Agus Fikri
  */
 
-interface NonTransactional
+interface Retrieval
 {
 
   public function getDescription();

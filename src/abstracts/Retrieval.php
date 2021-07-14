@@ -2,11 +2,11 @@
 
 namespace DAI\Utils\Abstracts;
 
-use DAI\Utils\Interfaces\NonTransactional as InterfacesNonTransactional;
+use DAI\Utils\Interfaces\Retrieval as IRetrieval;
 use DAI\Utils\Traits\FileHandler;
 use Validator;
 
-abstract class NonTransactional implements InterfacesNonTransactional
+abstract class Retrieval implements IRetrieval
 {
   use FileHandler;
 

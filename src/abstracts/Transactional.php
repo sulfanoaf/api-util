@@ -2,14 +2,14 @@
 
 namespace DAI\Utils\Abstracts;
 
-use DAI\Utils\Interfaces\Transactional as InterfacesTransactional;
+use DAI\Utils\Interfaces\Transactional as ITransactional;
 use DAI\Utils\Traits\FileHandler;
 use Exception;
 use Validator;
 use DB;
 use Log;
 
-abstract class Transactional implements InterfacesTransactional
+abstract class Transactional implements ITransactional
 {
   use FileHandler;
 

@@ -12,11 +12,11 @@
     "autoload": {
     	"psr-4": {
             "DAI\\Utils\\" : "src/",
-            "DAI\\Utils\\Abstracts\\" : "src/abstrats/",
-            "DAI\\Utils\\Helpers\\" : "src/helpers/",
-            "DAI\\Utils\\Traits\\" : "src/traits/",
+            "DAI\\Utils\\Abstracts\\" : "src/abstracts/",
             "DAI\\Utils\\Exceptions\\" : "src/exceptions/",
-            "DAI\\Utils\\Interfaces\\" : "src/interfaces/"
+            "DAI\\Utils\\Helpers\\" : "src/helpers/",
+            "DAI\\Utils\\Interfaces\\" : "src/interfaces/",
+            "DAI\\Utils\\Traits\\" : "src/traits/"
     	}
     },
     "require": {
@@ -27,4 +27,3 @@
     },
     "minimum-stability": "dev"
 }
-
