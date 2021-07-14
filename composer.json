@@ -15,7 +15,8 @@
             "DAI\\Utils\\Abstracts\\" : "src/abstrats/",
             "DAI\\Utils\\Helpers\\" : "src/helpers/",
             "DAI\\Utils\\Traits\\" : "src/traits/",
-            "DAI\\Utils\\Exceptions\\" : "src/exceptions/"
+            "DAI\\Utils\\Exceptions\\" : "src/exceptions/",
+            "DAI\\Utils\\Interfaces\\" : "src/interfaces/"
     	}
     },
     "require": {
