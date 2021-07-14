@@ -3,6 +3,7 @@
 namespace DAI\Utils\Abstracts;
 
 use DAI\Utils\Interfaces\Transactional as InterfacesTransactional;
+use DAI\Utils\Traits\FileHandler;
 use Exception;
 use Validator;
 use DB;
@@ -10,6 +11,8 @@ use Log;
 
 abstract class Transactional implements InterfacesTransactional
 {
+  use FileHandler;
+
   abstract protected function prepare($parameters, $original_parameters);
   abstract protected function process($parameters, $original_parameters);
 
