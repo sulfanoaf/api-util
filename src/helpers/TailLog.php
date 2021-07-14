@@ -5,7 +5,7 @@ class TailLog
 {
   public static function debug(...$args)
   {
-    $log = "START TAIL LOG ==========================================================>";
+    $log = "\n[*******************] local.DEBUG: START TAIL LOG =================================================>";
     foreach ($args as $key => $value) {
       if (is_object($value)) {
         $string = get_class($value);
@@ -16,13 +16,12 @@ class TailLog
       }
       $log .= "\n\t $key => $string";
     }
-    $log .= "\n[*******************] local.DEBUG: END TAIL LOG ============================================================>";
-    \Log::debug($log);
+    $log .= "\n[*******************] local.DEBUG: END TAIL LOG ===================================================>";
   }
 
   public static function info(...$args)
   {
-    $log = "START TAIL LOG ==========================================================>";
+    $log = "\n[*******************] local.INFO: START TAIL LOG =================================================>";
     foreach ($args as $key => $value) {
       if (is_object($value)) {
         $string = get_class($value);
@@ -33,13 +32,12 @@ class TailLog
       }
       $log .= "\n\t $key => $string";
     }
-    $log .= "\n[*******************] local.INFO: END TAIL LOG ============================================================>";
-    \Log::info($log);
+    $log .= "\n[*******************] local.INFO: END TAIL LOG ===================================================>";
   }
 
   public static function error(...$args)
   {
-    $log = "START TAIL LOG ==========================================================>";
+    $log = "\n[*******************] local.ERROR: START TAIL LOG =================================================>";
     foreach ($args as $key => $value) {
       if (is_object($value)) {
         $string = get_class($value);
@@ -50,7 +48,6 @@ class TailLog
       }
       $log .= "\n\t $key => $string";
     }
-    $log .= "\n[*******************] local.ERROR: END TAIL LOG ============================================================> \n\n";
-    \Log::error($log);
+    $log .= "\n[*******************] local.ERROR: END TAIL LOG ===================================================> \n\n";
   }
 }
