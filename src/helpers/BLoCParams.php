@@ -17,6 +17,7 @@ class BLoCParams implements BLoCParamsInterface
         } else {
             $this->params = $params;
         }
+        return $this->params;
     }
 
     public function get($key, $fallback = null) {

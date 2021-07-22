@@ -2,6 +2,7 @@
 
 namespace DAI\Utils\Abstracts;
 
+use DAI\Utils\Helpers\BLoCParams;
 use DAI\Utils\Interfaces\BLoCInterface;
 use DAI\Utils\Traits\FileHandler;
 use Exception;
@@ -13,9 +14,9 @@ abstract class Transactional implements BLoCInterface
 {
   use FileHandler;
 
-  abstract protected function process($parameters);
+  abstract protected function process(BLoCParams $parameters);
 
-  public function execute($parameters)
+  public function execute(BLoCParams $parameters)
   {
     DB::beginTransaction();
     try {
@@ -32,7 +33,7 @@ abstract class Transactional implements BLoCInterface
     }
   }
 
-  protected function validation($parameters)
+  protected function validation(BLoCParams $parameters)
   {
     return [];
   }
