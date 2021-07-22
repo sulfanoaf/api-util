@@ -4,7 +4,7 @@ namespace DAI\Utils\Exceptions;
 
 use Exception;
 
-class ValidationException extends Exception
+class BLoCException extends Exception
 {
   protected $message;
   protected $errors;

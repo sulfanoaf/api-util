@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 trait FileHandler
 {
-    private function get_file_extension($file_name)
+    private function getFileExtension($file_name)
     {
         return substr(strrchr($file_name, '.'), 1);
     }
 
-    private function disk() {
+    private function disk()
+    {
         return Storage::disk(env('ASSET_STORAGE', env('FILESYSTEM_DRIVER', 'public')));
     }
 
@@ -21,8 +22,8 @@ trait FileHandler
         ini_set('memory_limit', '-1');
         $time = $time ? $time : time();
         $original_name = $file->getClientOriginalName();
-        $extension = $this->get_file_extension(($original_name));
-        $filename = $filename ? $filename + "-" + $time + "-" + $index + "." + $extension : $time + "-" + $original_name;
+        $extension = $this->getFileExtension(($original_name));
+        $filename = $filename ? $filename . "-" . $time . "-" . $index . "." . $extension : $time . "-" + $original_name;
         $uploaded_path = $this->disk()->putFileAs($dirname, $file, $filename);
 
         return $uploaded_path;
@@ -39,6 +40,23 @@ trait FileHandler
 
         return $uploaded_path;
     }
+
+    public function saveBase64($file, $filename, $dirname = null)
+    {
+        $time = time();
+        $encoded_file = $file;
+        $decoded_file = base64_decode(explode(',', $encoded_file)[1]);
+
+        $filepath = '';
+        if (!is_null($dirname)) {
+            $filepath .= $dirname . '/';
+        }
+
+        $uploaded_path = $this->disk()->put($filepath . $time . "-" . $filename, $decoded_file);
+
+        return $uploaded_path;
+    }
+
 
     public function pathFile($file)
     {
@@ -90,7 +108,8 @@ trait FileHandler
         $this->disk()->delete($stored_file);
     }
 
-    public function downloadFile($file) {
+    public function downloadFile($file)
+    {
         return $this->disk()->download($file);
     }
 }

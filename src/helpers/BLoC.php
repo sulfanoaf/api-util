@@ -7,7 +7,7 @@ class BLoC
 {
     public static function call($blocClass, $params) {
         $bloc = App::make($blocClass);
-
-        return $bloc->execute($params);
+        $blocParams = new BLoCParams($params);
+        return $bloc->execute($blocParams);
     }
 }

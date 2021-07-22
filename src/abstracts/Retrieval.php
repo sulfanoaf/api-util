@@ -2,11 +2,11 @@
 
 namespace DAI\Utils\Abstracts;
 
-use DAI\Utils\Interfaces\Retrieval as IRetrieval;
+use DAI\Utils\Interfaces\BLoCInterface;
 use DAI\Utils\Traits\FileHandler;
 use Validator;
 
-abstract class Retrieval implements IRetrieval
+abstract class Retrieval implements BLoCInterface
 {
   use FileHandler;
 
@@ -15,12 +15,12 @@ abstract class Retrieval implements IRetrieval
   public function execute($parameters)
   {
 
-    Validator::make($parameters, $this->rules())->validate();
+    Validator::make($parameters, $this->validation($parameters))->validate();
 
     return $this->process($parameters);
   }
 
-  protected function rules()
+  protected function validation($parameters = null)
   {
     return [];
   }

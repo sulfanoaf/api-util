@@ -2,43 +2,37 @@
 
 namespace DAI\Utils\Abstracts;
 
-use DAI\Utils\Interfaces\Transactional as ITransactional;
+use DAI\Utils\Interfaces\BLoCInterface;
 use DAI\Utils\Traits\FileHandler;
 use Exception;
 use Validator;
 use DB;
 use Log;
 
-abstract class Transactional implements ITransactional
+abstract class Transactional implements BLoCInterface
 {
   use FileHandler;
 
-  abstract protected function prepare($parameters, $original_parameters);
-  abstract protected function process($parameters, $original_parameters);
+  abstract protected function process($parameters);
 
   public function execute($parameters)
   {
-    $original_parameters = $parameters;
-    $result = [];
+    DB::beginTransaction();
     try {
-      DB::beginTransaction();
+      Validator::make($parameters, $this->validation($parameters))->validate();
 
-      Validator::make($parameters, $this->rules())->validate();
-
-      $motified_parameters = $this->prepare($parameters, $original_parameters);
-      if ($motified_parameters != null) $parameters = $motified_parameters;
-      $result =  $this->process($parameters, $original_parameters);
-
+      $result = $this->process($parameters);
       DB::commit();
+
+      return $result;
     } catch (Exception $ex) {
       Log::error($ex);
       DB::rollback();
       throw $ex;
     }
-    return $result;
   }
 
-  protected function rules()
+  protected function validation($parameters)
   {
     return [];
   }

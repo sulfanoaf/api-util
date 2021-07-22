@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-use DAI\Utils\Exceptions\ValidationException as DAIValidationException;
+use DAI\Utils\Exceptions\BLoCException;
 
 trait ApiResponse
 {
@@ -40,7 +40,7 @@ trait ApiResponse
             $response['message'] = $message;
             $response['errors'] = $error->errors();
             $http_status = 422;
-        } else if ($error instanceof DAIValidationException) {
+        } else if ($error instanceof BLoCException) {
             $response['message'] = $error->message();
             $response['errors'] = $error->errors();
             $http_status = 400;
