@@ -20,6 +20,10 @@ class BLoCParams implements BLoCParamsInterface
         return $this->params;
     }
 
+    public function all() {
+        return $this->params;
+    }
+
     public function get($key, $fallback = null) {
         if (array_key_exists($key, $this->params)) {
             return $this->params[$key];

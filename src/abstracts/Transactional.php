@@ -20,7 +20,7 @@ abstract class Transactional implements BLoCInterface
   {
     DB::beginTransaction();
     try {
-      Validator::make($parameters, $this->validation($parameters))->validate();
+      Validator::make($parameters->all(), $this->validation($parameters))->validate();
 
       $result = $this->process($parameters);
       DB::commit();

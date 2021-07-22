@@ -16,12 +16,12 @@ abstract class Retrieval implements BLoCInterface
   public function execute(BLoCParams $parameters)
   {
 
-    Validator::make($parameters, $this->validation($parameters))->validate();
+    Validator::make($parameters->all(), $this->validation($parameters))->validate();
 
     return $this->process($parameters);
   }
 
-  protected function validation(BLoCParams $parameters = null)
+  protected function validation(BLoCParams $parameters)
   {
     return [];
   }
