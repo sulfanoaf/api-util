@@ -1,10 +1,11 @@
 <?php
 
-namespace DAI\Utils\Helpers;
+namespace DAI\Utils\rules;
 
-class CheckBase64
+use Illuminate\Contracts\Validation\Rule;
+
+class Base64 implements Rule
 {
-    protected $is_valid = true;
     protected $message = '';
     protected $mimetype_list = [
         'application/epub+zip',
@@ -84,43 +85,58 @@ class CheckBase64
         'video/x-msvideo',
     ];
 
-    public function __construct($param)
+    /**
+     * Create a new rule instance.
+     *
+     * @return void
+     */
+    public function __construct($mimetype_list = [])
     {
-        $params = explode(';', $param);
+        if (count($mimetype_list) > 0) {
+            $this->mimetype_list = $mimetype_list;
+        }
+    }
+
+    /**
+     * Determine if the validation rule passes.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
+    {
+        $params = explode(';', $value);
         if (count($params) != 2) {
-            $this->is_valid = false;
             $this->message = trans('validation.base64.length_invalid');
 
-            return;
+            return false;
         }
 
         $header = $params[0];
-        $body = $params[1];
-
         $headers = explode(':', $header);
-
         if (count($headers) != 2) {
-            $this->is_valid = false;
             $this->message = trans('validation.base64.header_invalid');
 
-            return;
+            return false;
         }
 
         $mimetype = $headers[1];
         if (!in_array($mimetype, $this->mimetype_list)) {
-            $this->is_valid = false;
             $this->message = trans('validation.base64.mimetype_invalid');
 
-            return;
+            return false;
         }
+
+        return true;
     }
 
-    public function isValid()
-    {
-        return $this->is_valid;
-    }
-
-    public function getMessage()
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
     {
         return $this->message;
     }
