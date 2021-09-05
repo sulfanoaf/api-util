@@ -79,7 +79,7 @@ trait FileHandler
     public function viewFile($file)
     {
         try {
-            $path = $this->handlePathFile($file);
+            $path = $this->pathFile($file);
             if (filter_var($path, FILTER_VALIDATE_URL)) {
                 $path = str_replace('\\', '/', $path);
                 $headers = get_headers($path, 1);
@@ -95,7 +95,7 @@ trait FileHandler
             ob_clean();
             readfile($path);
         } catch (Exception $e) {
-            $path = public_path('images/logo.png');
+            $path = public_path('no-image.png');
             $mime = mime_content_type($path);
             header("Content-type:$mime");
             ob_clean();
