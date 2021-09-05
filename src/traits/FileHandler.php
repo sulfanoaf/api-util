@@ -92,13 +92,11 @@ trait FileHandler
             }
             $mime = mime_content_type($path);
             header("Content-type:$mime");
-            ob_clean();
             readfile($path);
         } catch (Exception $e) {
             $path = public_path('no-image.png');
             $mime = mime_content_type($path);
             header("Content-type:$mime");
-            ob_clean();
             readfile($path);
         }
     }
