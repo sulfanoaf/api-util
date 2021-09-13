@@ -45,15 +45,20 @@ trait FileHandler
     {
         $time = time();
         $encoded_file = $file;
-        $decoded_file = base64_decode(explode(',', $encoded_file)[1]);
+        $file_parts = explode(',', $encoded_file);
+        $base64_header = $file_parts[0];
+        $decoded_body = base64_decode($file_parts[1]);
+
+        $base64_header_parts = explode(';', $base64_header);
+        $mimetype_parts = explode('/', $base64_header_parts[0]);
+        $file_type = $mimetype_parts[1];
 
         $filepath = '';
         if (!is_null($dirname)) {
             $filepath .= $dirname . '/';
         }
-
-        $uploaded_path = $this->disk()->put($filepath . $time . "-" . $filename, $decoded_file);
-
+        $uploaded_path = $filepath . $time . "-" . $filename . "." . $file_type;
+        $this->disk()->put($uploaded_path, $decoded_body);
         return $uploaded_path;
     }
 
